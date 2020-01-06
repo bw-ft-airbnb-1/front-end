@@ -1,8 +1,14 @@
 import React from 'react';
 
+import SignUp from './components/SignUp';
+import UserLogin from './components/UserLogin';
+
 function App() {
   return (
-    null
+    <div>
+      <SignUp />
+      <UserLogin />
+    </div>
   );
 }
 
