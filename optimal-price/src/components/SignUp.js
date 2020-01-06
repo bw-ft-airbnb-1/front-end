@@ -1,41 +1,53 @@
-import React from "react";
+import React, {useContext} from "react";
 import axios from 'axios'
+import Context from './../contexts/loginContext';
 
 const SignUp = () =>{
-  // still need state management
+  // state
+  const {credentials, setCredentials} = useContext(Context);
 
   // handleSubmit
   const handleSubmit = e =>{
     e.preventDefault();
-    // axios call in here
+    // axios call 
+    axios
+        .post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/register `, credentials)
+        .then(response =>{
+          // props.history.push('');
+        })
+        .catch(error => console.log(error))
   }
 
-  // handleChanges
-  const handleChanges = e => {
-    // set state here
-  }
+  // handleChanges  
+  const handleChanges = (e) => {
+    setCredentials({
+        ...credentials,
+        [e.target.name]: e.target.value
+    })
+}
 
   return ( // *********Changed this***********
     <div>
       <form className = 'registration' onSubmit = {handleSubmit}>
-        <label htmlFor = 'username'>Username: </label>
-          <input 
-            id = 'username'
-            type = 'text'
-            name = 'username'
-            placeholder = 'Enter your username'
-            // need to add value here
-            // need an onChange in here
+        <label htmlFor = 'email'>Email: </label>
+          <input className = 'signUpInput'
+            id = 'email'
+            type = 'email'
+            name = 'email'
+            placeholder = 'Enter your email address'
+            value = {credentials.email}
+            onChange = {handleChanges}
+            required
         />
 
         <label htmlFor = 'password'>Password: </label>
-          <input 
+          <input className = 'signUpInput'
             id = 'password'
             type = 'password'
             name = 'password'
             placeholder = 'Enter your password'
-            // need to add value here
-            // need an onChange in here
+            value = {credentials.password}
+            onChange = {handleChanges}
         />
         <button className = 'rgBtn'>SignUp</button>
       </form>
