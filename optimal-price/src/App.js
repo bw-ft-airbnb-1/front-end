@@ -19,8 +19,6 @@ function App() {
 
   return (
     <div>
-
-
       <Switch>
         <Route
             exact

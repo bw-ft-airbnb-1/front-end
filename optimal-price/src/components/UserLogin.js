@@ -8,7 +8,6 @@ import {
 import {
   Field,
   Form,
-  Formik,
   withFormik
 } from 'formik';
 
@@ -24,18 +23,18 @@ import './UserLogin.css';
 
 const UserLogin = ({values, errors, touched, status}) => {
 
-  const [existingUsers, setExistingUser] = useState([])
+  // const [existingUsers, setExistingUser] = useState([])
 
-  useEffect(() => {
-    status && setExistingUser(existingUsers => [...existingUsers, status])
-  },[status])
+  // useEffect(() => {
+  //   status && setExistingUser(existingUsers => [...existingUsers, status])
+  // },[status])
 
   return(
     <div className="LoginForm">
       <Jumbotron className="jumbotron">
       <Form>
         <label htmlFor="email">
-          Username:
+          Email:
             <Field
               id="email"
               type="email"
@@ -67,9 +66,9 @@ const UserLogin = ({values, errors, touched, status}) => {
 
 const FormikUserLogin = withFormik({
   mapPropsToValues({email, password}) {
-    return{
+    return {
       email: email || '',
-      passowrd: password || '',
+      password: password || ''
     }
 
   },
@@ -86,6 +85,7 @@ const FormikUserLogin = withFormik({
 // HANDLE SUBMIT 
 
 handleSubmit(values, {ResetForm, setStatus}) {
+  console.log("This is the status", values)
 // If the user exists... redirect/link to dashboard
 
 // If the user does not exist... either throw error or redirect to register
@@ -100,5 +100,5 @@ handleSubmit(values, {ResetForm, setStatus}) {
 
 
 
-export default UserLogin;
+export default FormikUserLogin;
 
