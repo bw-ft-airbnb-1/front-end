@@ -16,6 +16,8 @@ import * as Yup from 'yup';
 
 import axios from 'axios';
 
+import './UserLogin.css';
+
 
 
 
@@ -29,7 +31,8 @@ const UserLogin = ({values, errors, touched, status}) => {
   },[status])
 
   return(
-    <div>
+    <div className="LoginForm">
+      <Jumbotron className="jumbotron">
       <Form>
         <label htmlFor="email">
           Username:
@@ -55,6 +58,7 @@ const UserLogin = ({values, errors, touched, status}) => {
 
         <Button type="submit">Login</Button>
       </Form>
+      </Jumbotron>
 
 
     </div>
