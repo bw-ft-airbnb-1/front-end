@@ -1,7 +1,9 @@
 import React from "react";
 
 const SignUp = () =>{
-  return 'Sign Up'
+  return(
+    <div>REDIRECT TO SIGNUP</div>
+  ) 
 }
 
 export default SignUp;
