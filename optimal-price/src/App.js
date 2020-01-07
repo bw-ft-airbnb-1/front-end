@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import {Dashboard} from './components/Dashboard';
 
 import {
   Switch,
@@ -17,17 +18,21 @@ function App() {
 
   // adding state
   const [credentials, setCredentials] = useState({
+    name: '',
     email: '',
     password: ''
   })
 
+  const [user, setUser] = useState({})
+
   return (
     <div>
       <Switch>
-        <Context.Provider value = {{credentials, setCredentials}} >
+        <Context.Provider value = {{credentials, setCredentials, user, setUser}} >
             {/* <Route exact path="/" component={UserLogin} />  */}
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/" component={UserLogin} />
+            <Route exact path="/dashboard" component={Dashboard} />
         </Context.Provider>
       </Switch>
     </div>

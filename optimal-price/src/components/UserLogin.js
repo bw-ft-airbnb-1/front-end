@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState, useContext } from 'react';
+import {useHistory} from 'react-router-dom';
 
 import {
   Jumbotron,
@@ -18,29 +19,33 @@ import axios from 'axios';
 
 import './UserLogin.css';
 
-import {axiosWithAuth} from './../utils/axiosWithAuth';
+// import {axiosWithAuth} from './../utils/axiosWithAuth';
 import Context from './../contexts/loginContext';
 
 
-const UserLogin = ({values, errors, touched, status}) => {
-  //const {credentials, setCredentials} = useContext(Context);
-  const [existingUsers, setExistingUser] = useState({})
+const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange}) => {
+
+  const {user, setUser} = useContext(Context);
+  
+  // const [existingUsers, setExistingUser] = useState({})
 
 
   useEffect(() => {
-    status && setExistingUser(existingUsers => status)
+    status && setUser(user => status)
   })
 
   return(
     <div className="LoginForm">
       <Jumbotron className="jumbotron">
-      <Form>
+      <Form onSubmit = {handleSubmit}>
+
         <label htmlFor="email">
           Email:
             <Field
               id="email"
               type="email"
-              name="email"             
+              name="email"  
+              onChange = {handleChange}               
             />
         {touched.email && errors.email && (<p> {errors.email} </p>)}
         </label>
@@ -50,6 +55,7 @@ const UserLogin = ({values, errors, touched, status}) => {
               id="password"
               type="password"
               name="password"
+              onChange = {handleChange}    
             />
         {touched.password && errors.password && (<p> {errors.password} </p>)}
         </label>
@@ -65,8 +71,9 @@ const UserLogin = ({values, errors, touched, status}) => {
 }
 
 const FormikUserLogin = withFormik({
-  mapPropsToValues({email, password}) {
+  mapPropsToValues({ email, password}) {
     return {
+     
       email: email || '',
       password: password || ''
     }
@@ -81,13 +88,20 @@ const FormikUserLogin = withFormik({
     .required("This is a required field.")
   }),
 
-  handleSubmit (values, event, {resetForm, setStatus}) {
-    //console.log("submitting:", values);
-    axios.post("https://reqres.in/api/users", values)
+  // history: useHistory(),
+  handleSubmit (values, { props, setStatus}) { //resetForm,
+    
+    console.log("submitting:", values);
+    axios.post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/signin `, values)
         .then((response)=> {
-            console.log("This is response data:", response.data)
-            setStatus(response.data);
-            resetForm();
+            console.log("This is response data:", response.data.user)
+
+            localStorage.setItem('token', response.data.token)
+
+            setStatus(response.data.user);
+
+           props.history.push('/dashboard');
+            // resetForm();
         })
         .catch((error)=> {
             console.log("This is an async error:", error)
