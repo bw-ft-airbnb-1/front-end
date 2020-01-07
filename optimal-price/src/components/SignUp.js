@@ -3,6 +3,9 @@ import axios from 'axios'
 import Context from './../contexts/loginContext';
 
 const SignUp = () =>{
+
+
+
   // state
   const {credentials, setCredentials} = useContext(Context);
 
@@ -64,6 +67,7 @@ const SignUp = () =>{
       </form>
     </div>
   )
+
 }
 
 export default SignUp;
