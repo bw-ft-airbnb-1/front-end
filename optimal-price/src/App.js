@@ -1,20 +1,11 @@
 
 import React, { useState } from 'react';
-
 import {Dashboard} from './components/Dashboard/Dashboard.js';
 import { AddListing } from './components/Dashboard/AddListing.js';
 import { MyListings } from './components/Dashboard/MyListings.js';
 import PrivateRoute from './utils/PrivateRoute';
-
-import {
-  Switch,
-  Route,
-  Link,
-  NavLink
-} from 'react-router-dom';
-
+import { Switch, Route} from 'react-router-dom';
 import Context from "./contexts/loginContext";
-
 import SignUp from './components/SignUp';
 import UserLogin from './components/UserLogin';
 

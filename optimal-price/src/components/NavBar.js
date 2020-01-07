@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import {
     Collapse,
@@ -8,21 +8,21 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText,
+    // UncontrolledDropdown,
+    // DropdownToggle,
+    // DropdownMenu,
+    // DropdownItem,
+    // NavbarText,
     ButtonDropdown,
     Button
 } from 'reactstrap';
 
 import './NavBar.css';
 
-import { AddListing } from './Dashboard/AddListing';
-import { Dashboard } from './Dashboard/Dashboard';
-import { MyListings } from './Dashboard/MyListings';
-import { TransitionPropTypeKeys } from 'reactstrap/lib/utils';
+// import { AddListing } from './Dashboard/AddListing';
+// import { Dashboard } from './Dashboard/Dashboard';
+// import { MyListings } from './Dashboard/MyListings';
+// import { TransitionPropTypeKeys } from 'reactstrap/lib/utils';
 
 
 export const NavBar = () => {
@@ -38,7 +38,7 @@ export const NavBar = () => {
 
     const logout = event => {
         event.preventDefault();
-        
+
         localStorage.removeItem('token')
 
         history.push('/')
