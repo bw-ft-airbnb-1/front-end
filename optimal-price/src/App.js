@@ -8,6 +8,7 @@ import SignUp from './components/SignUp';
 function App() {
   // adding state
   const [credentials, setCredentials] = useState({
+    name: '',
     email: '',
     password: ''
   })

@@ -29,6 +29,17 @@ const SignUp = () =>{
   return ( // *********Changed this***********
     <div>
       <form className = 'registration' onSubmit = {handleSubmit}>
+        <label htmlFor = 'name'>Name: </label>
+            <input className = 'signUpInput'
+              id = 'name'
+              type = 'text'
+              name = 'name'
+              placeholder = 'Enter your name'
+              value = {credentials.name}
+              onChange = {handleChanges}
+              required
+        />
+
         <label htmlFor = 'email'>Email: </label>
           <input className = 'signUpInput'
             id = 'email'
