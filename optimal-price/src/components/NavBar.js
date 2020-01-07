@@ -12,11 +12,11 @@ import {
     DropdownMenu,
     DropdownItem,
     NavbarText,
+    ButtonDropdown,
+    Button
 } from 'reactstrap';
-import {
-    Switch,
-    Route
-} from 'react-router-dom';
+
+import './NavBar.css';
 
 import { AddListing } from './Dashboard/AddListing';
 import { Dashboard } from './Dashboard/Dashboard';
@@ -25,27 +25,39 @@ import { MyListings } from './Dashboard/MyListings';
 
 export const NavBar = () => {
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [collapsed, setCollapsed] = useState(true)
   
 
-    const toggle = () => setIsOpen(!isOpen)
+    const toggleNavbar = () => setCollapsed(!collapsed)
+
+    const logout = (event) => {
+        event.preventDefault();
+        console.log('This is the logout function.')
+        localStorage.removeItem('token')
+
+    }
 
     return(
     <div>
-        <Navbar color="light" expand="md" position="fixed">
-        <NavbarBrand href="/dashboard">Dashboard</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-            <Nav navbar>
+        <Navbar className="nav-container" expand="md">
+        <NavbarBrand className="mr-auto" href="/dashboard"> AirBNB Optimal Price </NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2">
+            <ButtonDropdown>Menu</ButtonDropdown>
+        </NavbarToggler>
+        <Collapse isOpen={!collapsed} navbar>
+            <Nav className="navItem-container" navbar>
                 <NavItem>
-                    <NavLink href="/newlisting">Add a Listing</NavLink>
+                    <NavLink className="navLink" href="/dashboard">Dashboard</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/listings">My Listings</NavLink>
+                    <NavLink className="navLink" href="/newlisting">Add a Listing</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href=" ">Sign Out</NavLink>
+                    <NavLink className="navLink" href="/listings">My Listings</NavLink>
                 </NavItem>
+                <Button onClick={logout} className="signout-btn">
+                    <NavLink className="navLink" href=" ">Sign Out</NavLink>
+                </Button>
             </Nav>
         </Collapse>
     </Navbar>
