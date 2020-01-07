@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
-import {Dashboard} from './components/Dashboard';
+
+import {Dashboard} from './components/Dashboard/Dashboard.js';
+import { AddListing } from './components/Dashboard/AddListing.js';
+import { MyListings } from './components/Dashboard/MyListings.js';
 
 import {
   Switch,
@@ -33,6 +36,8 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/" component={UserLogin} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route path="/newlisting" component={AddListing}/>
+            <Route path="/listings" component={MyListings} />
         </Context.Provider>
       </Switch>
     </div>
