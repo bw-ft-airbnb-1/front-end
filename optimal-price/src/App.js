@@ -23,14 +23,12 @@ function App() {
 
   return (
     <div>
-      <Router>
       <Switch>
         <Context.Provider value = {{credentials, setCredentials}} >
             {/* <Route exact path="/" component={UserLogin} />  */}
             <Route exact path="/signup" component={SignUp} />
         </Context.Provider>
       </Switch>
-      </Router>
     </div>
   );
 }
