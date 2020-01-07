@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {Dashboard} from './components/Dashboard/Dashboard.js';
 import { AddListing } from './components/Dashboard/AddListing.js';
 import { MyListings } from './components/Dashboard/MyListings.js';
+import PrivateRoute from './utils/PrivateRoute';
 
 import {
   Switch,
@@ -35,9 +36,9 @@ function App() {
             {/* <Route exact path="/" component={UserLogin} />  */}
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/" component={UserLogin} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route path="/newlisting" component={AddListing}/>
-            <Route path="/listings" component={MyListings} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/newlisting" component={AddListing}/>
+            <PrivateRoute path="/listings" component={MyListings} />
         </Context.Provider>
       </Switch>
     </div>
