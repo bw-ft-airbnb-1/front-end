@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useState, useContext } from 'react';
 
 import {
   Jumbotron,
@@ -17,18 +18,28 @@ import axios from 'axios';
 
 import './UserLogin.css';
 
+import {axiosWithAuth} from './../utils/axiosWithAuth';
+import Context from './../contexts/loginContext';
 
 
+const UserLogin = () => {
+  const {credentials, setCredentials} = useContext(Context);
 
-
-const UserLogin = ({values, errors, touched, status}) => {
-
-  // const [existingUsers, setExistingUser] = useState([])
-
-  // useEffect(() => {
-  //   status && setExistingUser(existingUsers => [...existingUsers, status])
-  // },[status])
-
+  const handleSubmit = e =>{
+      e.preventDefault();
+      axiosWithAuth()
+                    .post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/signin `, credentials)
+                    .then(response =>{
+                      localStorage.setItem('token', response.data.token)
+                      localStorage.setItem("email", credentials.email);
+                      // setting state
+                      setCredentials({
+                        email: credentials.email
+                    });
+                      // props.history.push("/dashboard")
+                    })
+                    .catch(error => console.log(error))
+  }
   return(
     <div className="LoginForm">
       <Jumbotron className="jumbotron">
@@ -41,19 +52,19 @@ const UserLogin = ({values, errors, touched, status}) => {
               name="email"             
             />
 
-        {touched.email && errors.email && (<p> {errors.email} </p>)}
+        
 
         </label>
         <label htmlFor="password">
           Password:
             <Field 
               id="password"
-              type="text"
+              type="password"
               name="password"
             />
         </label>
 
-        {touched.password && errors.password && (<p> {errors.password} </p>)}
+       
 
         <Button type="submit">Login</Button>
       </Form>
@@ -61,44 +72,9 @@ const UserLogin = ({values, errors, touched, status}) => {
 
 
     </div>
-  )
+    )
+
 }
 
-const FormikUserLogin = withFormik({
-  mapPropsToValues({email, password}) {
-    return {
-      email: email || '',
-      password: password || ''
-    }
-
-  },
-
-  // VALIDATION SCHEMA
-  validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("Please enter a valid email address.")
-      .required("This is a required field!"),
-    password: Yup.string()
-      .min(6)
-      .required("This is a required field!")
-  }),
-// HANDLE SUBMIT 
-
-handleSubmit(values, {ResetForm, setStatus}) {
-  console.log("This is the status", values)
-// If the user exists... redirect/link to dashboard
-
-// If the user does not exist... either throw error or redirect to register
-
-// How do you either reset the form or keep it immutable until a logout occurs?
-}
-
-
-})(UserLogin);
-
-
-
-
-
-export default FormikUserLogin;
+export default UserLogin;
 

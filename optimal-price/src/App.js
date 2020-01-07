@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 import {
@@ -7,30 +8,29 @@ import {
   NavLink
 } from 'react-router-dom';
 
+import Context from "./contexts/loginContext";
+
 import SignUp from './components/SignUp';
-import UserLogin from './components/UserLogin';
+// import UserLogin from './components/UserLogin';
 
 function App() {
-  // STATE
-  const [user, setUser] = useState()
 
-  // useEffect
-
+  // adding state
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  })
 
   return (
     <div>
+      <Router>
       <Switch>
-        <Route
-            exact
-            path='/'
-            component={UserLogin}
-            />
-        <Route 
-          exact
-          path='/signup'
-          component={SignUp}
-          />
+        <Context.Provider value = {{credentials, setCredentials}} >
+            {/* <Route exact path="/" component={UserLogin} />  */}
+            <Route exact path="/signup" component={SignUp} />
+        </Context.Provider>
       </Switch>
+      </Router>
     </div>
   );
 }
