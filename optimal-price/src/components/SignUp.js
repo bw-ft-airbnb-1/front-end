@@ -2,12 +2,12 @@ import React, {useContext} from "react";
 import axios from 'axios'
 import Context from './../contexts/loginContext';
 
-const SignUp = () =>{
+const SignUp = (props) =>{
 
 
 
   // state
-  const {credentials, setCredentials} = useContext(Context);
+  const {credentials, setCredentials, setUser} = useContext(Context);
 
   // handleSubmit
   const handleSubmit = e =>{
@@ -16,7 +16,10 @@ const SignUp = () =>{
     axios
         .post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/register `, credentials)
         .then(response =>{
-          // props.history.push('');
+          console.log(response)
+          localStorage.setItem('token', response.data.token)
+          setUser(response.data.user)
+          props.history.push('/dashboard');
         })
         .catch(error => console.log(error))
   }
