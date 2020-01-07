@@ -27,6 +27,7 @@ function App() {
         <Context.Provider value = {{credentials, setCredentials}} >
             {/* <Route exact path="/" component={UserLogin} />  */}
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/" component={UserLogin} />
         </Context.Provider>
       </Switch>
     </div>
