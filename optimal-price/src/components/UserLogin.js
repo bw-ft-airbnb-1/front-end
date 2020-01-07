@@ -22,7 +22,7 @@ import {axiosWithAuth} from './../utils/axiosWithAuth';
 import Context from './../contexts/loginContext';
 
 
-const UserLogin = () => {
+const UserLogin = ({errors, touched}) => {
   const {credentials, setCredentials} = useContext(Context);
 
   const handleSubmit = e =>{
@@ -40,6 +40,8 @@ const UserLogin = () => {
                     })
                     .catch(error => console.log(error))
   }
+
+  
   return(
     <div className="LoginForm">
       <Jumbotron className="jumbotron">
@@ -51,9 +53,7 @@ const UserLogin = () => {
               type="email"
               name="email"             
             />
-
-        
-
+        {touched.email && errors.email && (<p> {errors.email} </p>)}
         </label>
         <label htmlFor="password">
           Password:
@@ -62,9 +62,8 @@ const UserLogin = () => {
               type="password"
               name="password"
             />
+        {touched.password && errors.password && (<p> {errors.password} </p>)}
         </label>
-
-       
 
         <Button type="submit">Login</Button>
       </Form>
@@ -76,5 +75,43 @@ const UserLogin = () => {
 
 }
 
-export default UserLogin;
+const FormikUserLogin = withFormik({
+  mapPropsToValues({email, password}) {
+    return {
+      email: email || '',
+      password: password || ''
+    }
+  },
+
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+    .email("Please enter a valid email address.")
+    .required("This is a requird field."),
+    password: Yup.string()
+    .min(4)
+    .required("This is a required field.")
+  }),
+
+  handleSubmit = e => {
+    e.preventDefault();
+    axiosWithAuth()
+                  .post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/signin `, credentials)
+                  .then(response =>{
+                    localStorage.setItem('token', response.data.token)
+                    localStorage.setItem("email", credentials.email);
+                    // setting state
+                    setCredentials({
+                      email: credentials.email
+                  });
+                    // props.history.push("/dashboard")
+                  })
+                  .catch(error => console.log(error))
+}
+
+
+
+
+})(UserLogin)
+
+export default FormikUserLogin;
 
