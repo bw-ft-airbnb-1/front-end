@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+import React, { useState } from 'react';
+
+import {
+  Switch,
+  Route,
+  Link,
+  NavLink
+} from 'react-router-dom';
+
 import Context from "./contexts/loginContext";
 
 import SignUp from './components/SignUp';
 // import UserLogin from './components/UserLogin';
 
 function App() {
+
   // adding state
   const [credentials, setCredentials] = useState({
     email: '',

@@ -1,9 +1,28 @@
-import React, {useContext} from 'react';
+
+import React, { useEffect, useState, useContext } from 'react';
+
+import {
+  Jumbotron,
+  Button
+} from 'reactstrap';
+
+import {
+  Field,
+  Form,
+  withFormik
+} from 'formik';
+
+import * as Yup from 'yup';
+
+import axios from 'axios';
+
+import './UserLogin.css';
+
 import {axiosWithAuth} from './../utils/axiosWithAuth';
 import Context from './../contexts/loginContext';
 
 
-const UserLogin = () =>{
+const UserLogin = () => {
   const {credentials, setCredentials} = useContext(Context);
 
   const handleSubmit = e =>{
@@ -21,7 +40,41 @@ const UserLogin = () =>{
                     })
                     .catch(error => console.log(error))
   }
-  return // Changes here
+  return(
+    <div className="LoginForm">
+      <Jumbotron className="jumbotron">
+      <Form>
+        <label htmlFor="email">
+          Email:
+            <Field
+              id="email"
+              type="email"
+              name="email"             
+            />
+
+        
+
+        </label>
+        <label htmlFor="password">
+          Password:
+            <Field 
+              id="password"
+              type="password"
+              name="password"
+            />
+        </label>
+
+       
+
+        <Button type="submit">Login</Button>
+      </Form>
+      </Jumbotron>
+
+
+    </div>
+    )
+
 }
 
 export default UserLogin;
+
