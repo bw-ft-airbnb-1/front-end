@@ -1,0 +1,35 @@
+/* DASHBOARD */
+.welcome-card {
+    width: 25%;
+    margin-right: 55%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+
+
+
+/* ADD LISTING */
+
+.addListing {
+    display: flex;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.addListing-label {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.addCard {
+    height: 30%;
+    width: 40%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}

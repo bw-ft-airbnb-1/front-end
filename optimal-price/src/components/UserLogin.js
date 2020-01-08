@@ -1,6 +1,5 @@
 
-import React, { useEffect, useState, useContext } from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
 
 import {
   Jumbotron,
@@ -14,12 +13,8 @@ import {
 } from 'formik';
 
 import * as Yup from 'yup';
-
 import axios from 'axios';
-
 import './UserLogin.css';
-
-// import {axiosWithAuth} from './../utils/axiosWithAuth';
 import Context from './../contexts/loginContext';
 
 
@@ -27,8 +22,6 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
 
   const {user, setUser} = useContext(Context);
   
-  // const [existingUsers, setExistingUser] = useState({})
-
 
   useEffect(() => {
     status && setUser(user => status)
@@ -89,43 +82,22 @@ const FormikUserLogin = withFormik({
   }),
 
   // history: useHistory(),
-  handleSubmit (values, { props, setStatus}) { //resetForm,
+  handleSubmit (values, { props, setStatus}) { 
     
-    console.log("submitting:", values);
     axios.post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/signin `, values)
         .then((response)=> {
-            console.log("This is response data:", response.data.user)
 
             localStorage.setItem('token', response.data.token)
 
             setStatus(response.data.user);
 
            props.history.push('/dashboard');
-            // resetForm();
+            
         })
         .catch((error)=> {
             console.log("This is an async error:", error)
         })
   }
-
-//   handleSubmit: e => {
-//     e.preventDefault();
-//     axiosWithAuth()
-//                   .post(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/signin `, credentials)
-//                   .then(response =>{
-//                     localStorage.setItem('token', response.data.token)
-//                     localStorage.setItem("email", credentials.email);
-//                     // setting state
-//                     setCredentials({
-//                       email: credentials.email
-//                   });
-//                     // props.history.push("/dashboard")
-//                   })
-//                   .catch(error => console.log(error))
-// }
-
-
-
 
 })(UserLogin)
 
