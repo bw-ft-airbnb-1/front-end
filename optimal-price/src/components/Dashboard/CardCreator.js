@@ -4,14 +4,32 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
    export const Cards = props =>{
-     console.log(props)
+     console.log(props, 'this is for props')
+
+    //  const edit = e =>{
+    //    e.preventDefault();
+    //    // axios.put call here
+    //  }
+
+    const handleDelete = e => {
+      e.preventDefault();
+      axiosWithAuth()
+                    .delete(`/properties/${props.myid}`)
+                    .then(response => {
+                      console.log(response)
+                    })
+                    .catch(err => console.log(err))
+
+    }
+
       return (
         <div>
           <Card>
-            <CardImg top width="100%" src= {props.photos[0]} alt="Card image" />
+            <CardImg top width="100%" src= {props.image} alt="Card image" />
             <CardBody>
               <CardTitle>Luxurious Cabin</CardTitle>
               <CardSubtitle>Perfect for a getaway</CardSubtitle>
@@ -25,7 +43,8 @@ import {
               <CardText>Bed Type: {props.bedType} </CardText>
               <CardText>Security Deposit: {props.securityDeposit} </CardText>
               <CardText>Optimal Price : {props.optimalPrice } </CardText>
-              <Button>Reserve</Button>
+              <Button color = 'info'> Edit </Button>
+              <Button color = 'danger' onClick = {handleDelete}>Delete</Button>
             </CardBody>
           </Card>
          </div>

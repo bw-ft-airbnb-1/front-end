@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavBar } from '../NavBar.js';
 import { Cards } from './CardCreator';
 import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import Context from '../../contexts/loginContext';
 
-export const MyListings = (props) => {
+export const MyListings = () => {
 
-    const [listing, setListing] = useState([])
+    // const [listing, setListing] = useState([])
+    const {properties, setProperties} = useContext(Context)
+    console.log(properties, 'context')
 
     useEffect(() => {
       axiosWithAuth()
-            .get(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/properties`)
+            .get('/user/properties')
             .then(response => {
-                console.log(response.data)
-                setListing(response.data)
+                console.log(response.data, 'this is the one')
+                setProperties(response.data)
             })
         .catch(error => console.log({error}))
     },[])
@@ -21,22 +24,26 @@ export const MyListings = (props) => {
         <div>
         <NavBar />
             My Listings
-        {listing.map(item => (
+        {properties.map(item => (
             <Cards 
                 key = {item.id}
-                minimumNights = {item.minimumNights}
+                myid = {item.id}
+                minimum_nights = {item.minimum_nights}
                 bedrooms = {item.bedrooms}
                 bathrooms = {item.bathrooms}
-                entirePlace = {item.entirePlace}
+                security_deposit = {item.security_deposit}
+                price = {item.price}
+                image = {item.image}
+                zip_code = {item.zip_code}
                 accommodates = {item.accommodates}
-                propertyType = {item.propertyType}
-                bedType = {item.bedType}
-                securityDeposit = {item.securityDeposit}
-                optimalPrice = {item.optimalPrice}
-                photos = {item.photos}
+                property_type = {item.property_type}
+                bed_types = {item.bed_types}
+                room_type = {item.room_type}
+                // amenities = {item.amenities}
             />
         ))}
  
         </div>
     )
 }
+

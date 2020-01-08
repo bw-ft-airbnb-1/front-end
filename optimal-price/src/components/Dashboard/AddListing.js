@@ -31,9 +31,7 @@ export const AddListing = () => {
      zipCode: "",
      address: ""
  })
- const [priceEst, setPriceEst] = useState({
-     price: 0.00
- })
+ const [priceEst, setPriceEst] = useState( 0.00 )
 
  // Still need to take care of Amenities, entirePlace, and Availability
 
@@ -74,16 +72,14 @@ const cancelForm = () => {
         zipCode: "",
         address: ""
     })
-    setPriceEst({
-        price: 0.00
-    })
+    setPriceEst( 0.00 )
 }
 
     return(
         <div>
         <NavBar />
         <Card id="output-card" className="addCard">
-    <h1 className="output-label-text">Predicted Price: $ {priceEst.price}</h1>
+    <h1 className="output-label-text">Predicted Price: $ {priceEst}</h1>
         </Card>
             <Jumbotron className="addListing-jumbo">
                 <form className="addListing" onSubmit={AddListing}>

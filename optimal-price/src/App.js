@@ -20,10 +20,12 @@ function App() {
 
   const [user, setUser] = useState({})
 
+  const [properties, setProperties] = useState([])
+
   return (
     <div>
       <Switch>
-        <Context.Provider value = {{credentials, setCredentials, user, setUser}} >
+        <Context.Provider value = {{credentials, setCredentials, user, setUser, properties, setProperties}} >
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/" component={UserLogin} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
