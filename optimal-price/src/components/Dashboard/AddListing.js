@@ -7,7 +7,7 @@ import {
     Card
   } from 'reactstrap';
   
-  import axios from 'axios';
+ 
 
   import '../Dashboard.css';
 
