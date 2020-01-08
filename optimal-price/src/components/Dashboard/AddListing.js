@@ -4,7 +4,8 @@ import { NavBar } from '../NavBar.js';
 import {
     Jumbotron,
     Button,
-    Card
+    Card,
+    CardTitle
   } from 'reactstrap';
   
   import axios from 'axios';
@@ -43,17 +44,20 @@ export const AddListing = () => {
  const addListing = (event) => {
      event.preventDefault()
      console.log("This is your add listing form state:", listing)
+     //axios.post(" ",listing)
  }
     return(
         <div>
         <NavBar />
-            Add a Listing Page
+        <Card id="output-card" className="addCard">
+            <h1 className="output-label-text">Predicted Price: $</h1>
+        </Card>
             <Jumbotron className="addListing-jumbo">
                 <form className="addListing" onSubmit={AddListing}>
 
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Minimum Price:
+                        <h4 className='label-text'>Minimum Price: </h4>
                             <input
                                 type="number"
                                 name="minimumPrice"
@@ -68,7 +72,7 @@ export const AddListing = () => {
                     </Card>
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Minimum Nights:
+                            <h4 className='label-text'>Minimum Nights: </h4>
                             <input
                             type="number"
                             name="minimumNights"
@@ -83,7 +87,7 @@ export const AddListing = () => {
                     </Card>
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Bedrooms:
+                            <h4 className="label-text">Bedrooms: </h4>
                             <input
                             type="number"
                             name="bedrooms"
@@ -97,7 +101,7 @@ export const AddListing = () => {
                     </Card> 
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Bathrooms:
+                            <h4 className="label-text">Bathrooms: </h4>
                             <input
                             type="number"
                             name="bathrooms"
@@ -111,7 +115,7 @@ export const AddListing = () => {
                     </Card>
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Maximum guests:
+                        <h4 className="label-text">Maximum Guests: </h4>
                             <input
                             type="number"
                             name="maxGuests"
@@ -124,7 +128,7 @@ export const AddListing = () => {
                     </Card>  
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Property Type:
+                        <h4 className="label-text">Property Type: </h4>
                             <select
                             name="propertyType"
                             value={listing.propertyType}
@@ -140,7 +144,7 @@ export const AddListing = () => {
                     </Card>  
                     <Card className="addCard">
                         <label className="addListing-label">
-                            City:
+                        <h4 className="label-text">City: </h4>
                             <input
                             type="text"
                             name="city"
@@ -152,7 +156,7 @@ export const AddListing = () => {
                     </Card>
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Zip Code:
+                        <h4 className="label-text">Zip Code: </h4>
                             <input
                             type="number"
                             name="zipCode"
@@ -164,7 +168,7 @@ export const AddListing = () => {
                     </Card>
                     <Card className="addCard">
                         <label className="addListing-label">
-                            Address:
+                        <h4 className="label-text">Address: </h4>
                             <input
                             type="text"
                             name="address"
@@ -175,12 +179,14 @@ export const AddListing = () => {
                         </label>
                     </Card>
                 </form>
+                <div className="button-div">
                 <Button onClick={addListing} className="submitButton">
                     Add Listing
                 </Button>
-                <Button color="warning">
+                <Button color="danger">
                     Cancel
                 </Button>
+                </div>
             </Jumbotron>
         </div>
     )
