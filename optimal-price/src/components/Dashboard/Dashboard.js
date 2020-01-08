@@ -5,6 +5,8 @@ import {
 } from 'reactstrap';
 import { NavBar } from '../NavBar.js';
 
+import '../Dashboard.css';
+
 
 
 export const Dashboard = () => {
@@ -14,8 +16,8 @@ export const Dashboard = () => {
     return(
         <div>
         <NavBar />
-        <Card>
-        <h1> Welcome, {user.name}! </h1>
+        <Card className="welcome-card">
+        <h1 className="welcome-text"> Welcome, {user.name}! </h1>
         </Card>
         </div>
     )
