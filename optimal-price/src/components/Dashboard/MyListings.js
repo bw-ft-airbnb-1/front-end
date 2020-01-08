@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { NavBar } from '../NavBar.js';
 import { Cards } from './CardCreator';
-import Axios from 'axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 
 export const MyListings = (props) => {
 
-    const [state, setState] = useState([])
+    const [listing, setListing] = useState([])
 
     useEffect(() => {
-        Axios
-            .get()
+      axiosWithAuth()
+            .get(`https://bw-ft-airbnb-1.herokuapp.com/api/v1/user/properties`)
             .then(response => {
-                setState(response.data)
+                console.log(response.data)
+                setListing(response.data)
             })
         .catch(error => console.log({error}))
     },[])
@@ -20,8 +21,20 @@ export const MyListings = (props) => {
         <div>
         <NavBar />
             My Listings
-        {state.map(()=> (
-            <Cards />
+        {listing.map(item => (
+            <Cards 
+                key = {item.id}
+                minimumNights = {item.minimumNights}
+                bedrooms = {item.bedrooms}
+                bathrooms = {item.bathrooms}
+                entirePlace = {item.entirePlace}
+                accommodates = {item.accommodates}
+                propertyType = {item.propertyType}
+                bedType = {item.bedType}
+                securityDeposit = {item.securityDeposit}
+                optimalPrice = {item.optimalPrice}
+                photos = {item.photos}
+            />
         ))}
  
         </div>

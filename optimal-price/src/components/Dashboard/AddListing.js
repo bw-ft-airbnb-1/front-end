@@ -48,11 +48,12 @@ export const AddListing = () => {
  const addListing = (event) => {
      event.preventDefault()
      console.log("This is your add listing form state:", listing)
-     //axios.post(" ",listing)
+     //axios.post(" ",listing) return state of form plus price
  }
 
 const runPriceEstimator = (event) => {
     event.preventDefault()
+    // post to get optimal price
     setPriceEst(
         listing.minimumPrice * listing.minimumNights
     )
