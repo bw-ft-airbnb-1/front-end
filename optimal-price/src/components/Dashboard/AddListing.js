@@ -11,6 +11,7 @@ import {
   import axios from 'axios';
 
   import '../Dashboard.css';
+import { reset } from 'ansi-colors';
 
  // import {axiosWithAuth} from './../utils/axiosWithAuth';
 //import Context from './../contexts/loginContext';
@@ -30,6 +31,9 @@ export const AddListing = () => {
      zipCode: "",
      address: ""
  })
+ const [priceEst, setPriceEst] = useState({
+     price: 0.00
+ })
 
  // Still need to take care of Amenities, entirePlace, and Availability
 
@@ -46,11 +50,39 @@ export const AddListing = () => {
      console.log("This is your add listing form state:", listing)
      //axios.post(" ",listing)
  }
+
+const runPriceEstimator = (event) => {
+    event.preventDefault()
+    setPriceEst(
+        listing.minimumPrice * listing.minimumNights
+    )
+}
+
+const cancelForm = () => {
+    setListing({
+        availability: {"Monday":false, "Tuesday":false, "Wednesday":false, "Thursday":false, "Friday":false, "Saturday":false, "Sunday":false},
+        minimumPrice: "",
+        minimumNights: "",
+        bedrooms: "",
+        bathrooms: "",
+        entirePlace: true,
+        maxGuests: "",
+        amenities: {"laundry":false, "spa":false, "wifi":false, "cleaning":false, "breakfast":false, "security":false, "pool":false, "patio":false},
+        propertyType: "",
+        city: "",
+        zipCode: "",
+        address: ""
+    })
+    setPriceEst({
+        price: 0.00
+    })
+}
+
     return(
         <div>
         <NavBar />
         <Card id="output-card" className="addCard">
-            <h1 className="output-label-text">Predicted Price: $</h1>
+    <h1 className="output-label-text">Predicted Price: $ {priceEst.price}</h1>
         </Card>
             <Jumbotron className="addListing-jumbo">
                 <form className="addListing" onSubmit={AddListing}>
@@ -183,7 +215,10 @@ export const AddListing = () => {
                 <Button onClick={addListing} className="submitButton">
                     Add Listing
                 </Button>
-                <Button color="danger">
+                <Button onClick={runPriceEstimator} className="run-ds-btn">
+                    Get Price
+                </Button>
+                <Button onClick={cancelForm} color="danger">
                     Cancel
                 </Button>
                 </div>
