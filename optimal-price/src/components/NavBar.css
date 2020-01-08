@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 55%;
-    align-items: flex-end;
+    align-items: baseline;
 }
 
 .navLink {
@@ -26,4 +26,8 @@
 
 .signout-btn {
   background-color: #549195;
+}
+
+.signout-btn:hover {
+    background-color: #222222;
 }
