@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavBar } from '../NavBar.js';
 import { Cards } from './CardCreator';
-import Axios from 'axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import Context from '../../contexts/loginContext';
 
-export const MyListings = (props) => {
+export const MyListings = () => {
 
-    const [state, setState] = useState([])
+    // const [listing, setListing] = useState([])
+    const {properties, setProperties} = useContext(Context)
+    console.log(properties, 'context')
 
     useEffect(() => {
-        Axios
-            .get()
+      axiosWithAuth()
+            .get('/user/properties')
             .then(response => {
-                setState(response.data)
+                console.log(response.data, 'this is the one')
+                setProperties(response.data)
             })
         .catch(error => console.log({error}))
     },[])
@@ -20,10 +24,26 @@ export const MyListings = (props) => {
         <div>
         <NavBar />
             My Listings
-        {state.map(()=> (
-            <Cards />
+        {properties.map(item => (
+            <Cards 
+                key = {item.id}
+                myid = {item.id}
+                minimum_nights = {item.minimum_nights}
+                bedrooms = {item.bedrooms}
+                bathrooms = {item.bathrooms}
+                security_deposit = {item.security_deposit}
+                price = {item.price}
+                image = {item.image}
+                zip_code = {item.zip_code}
+                accommodates = {item.accommodates}
+                property_type = {item.property_type}
+                bed_types = {item.bed_types}
+                room_type = {item.room_type}
+                // amenities = {item.amenities}
+            />
         ))}
  
         </div>
     )
 }
+

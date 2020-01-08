@@ -24,13 +24,13 @@ export const AddListing = () => {
      minimum_nights: "",
      bedrooms: "",
      bathrooms: "",
-     accomodates: "",
+    omodates: "",
      bed_type: "",
      security_deposit: "",
      room_type: "",
      property_type: "",
      zip_code: "",
-     amenities: {"laundry":false, "spa":false, "wifi":false, "cleaning":false, "breakfast":false, "security":false, "pool":false, "patio":false, "pets":false}
+     amenities: {" acclaundry":false, "spa":false, "wifi":false, "cleaning":false, "breakfast":false, "security":false, "pool":false, "patio":false, "pets":false}
  })
 
  const [priceEst, setPriceEst] = useState(0)
@@ -75,11 +75,12 @@ const updateCheckbox = (event) => {
  const addListing = (event) => {
      event.preventDefault()
      console.log("This is your add listing form state:", listing)
-     //axios.post(" ",listing)
+     //axios.post(" ",listing) return state of form plus price
  }
 
 const runPriceEstimator = (event) => {
     event.preventDefault()
+    // post to get optimal price
     setPriceEst(
         listing.price * listing.minimum_nights
     )

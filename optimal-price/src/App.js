@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {Dashboard} from './components/Dashboard/Dashboard.js';
 import { AddListing } from './components/Dashboard/AddListing.js';
 import { MyListings } from './components/Dashboard/MyListings.js';
-import PrivateRoute from './utils/privateRoute';
+import PrivateRoute from './utils/PrivateRoute';
 import { Switch, Route} from 'react-router-dom';
 import Context from "./contexts/loginContext";
 import SignUp from './components/SignUp';
@@ -20,10 +20,12 @@ function App() {
 
   const [user, setUser] = useState({})
 
+  const [properties, setProperties] = useState([])
+
   return (
     <div>
       <Switch>
-        <Context.Provider value = {{credentials, setCredentials, user, setUser}} >
+        <Context.Provider value = {{credentials, setCredentials, user, setUser, properties, setProperties}} >
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/" component={UserLogin} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />

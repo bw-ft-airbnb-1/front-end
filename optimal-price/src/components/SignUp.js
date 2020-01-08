@@ -33,7 +33,7 @@ const SignUp = (props) =>{
 }
 
   return ( // *********Changed this***********
-    <div>
+    <div className = 'signUp'>
       <form className = 'registration' onSubmit = {handleSubmit}>
         <label htmlFor = 'name'>Name: </label>
             <input className = 'signUpInput'
