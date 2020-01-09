@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { NavBar } from '../NavBar.js';
 import axios from "axios";
 
@@ -48,6 +49,7 @@ console.log(listing, 'listing is here son')
 //     })
 //  },[])
 
+ 
 
  const handleChange = (event) => {
      if(event.target.name === 'property_type' || event.target.name === 'bed_type' || event.target.name === 'room_type' ){
@@ -95,6 +97,7 @@ const renderAmenities = () => {
 
 
 
+const history = useHistory()
 
  const addListing = (event) => {
      event.preventDefault()
@@ -103,6 +106,7 @@ const renderAmenities = () => {
      axiosWithAuth().post('/properties', {...listing, optimal_price:priceEst})
                     .then(response =>{
                         console.log(response)
+                        history.push('/listings')
                     })
                     .catch(error => console.log(error.message))
  }

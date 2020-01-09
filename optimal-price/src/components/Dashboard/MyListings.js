@@ -32,7 +32,7 @@ export const MyListings = () => {
                 bedrooms = {item.bedrooms}
                 bathrooms = {item.bathrooms}
                 security_deposit = {item.security_deposit}
-                price = {item.price}
+                price = {item.optimal_price}
                 image = {item.image}
                 zip_code = {item.zip_code}
                 accommodates = {item.accommodates}

@@ -7,6 +7,8 @@ import {
 } from 'reactstrap';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
+import '../Dashboard.css';
+
 
    export const Cards = props =>{
     const {properties, setProperties} = useContext(Context)
@@ -27,23 +29,27 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
     }
 
       return (
-        <div>
-          <Card>
-            <CardImg top width="100%" src= {props.image} alt="Card image" />
-            <CardBody>
-              <CardTitle>Luxurious Cabin</CardTitle>
-              <CardSubtitle>Perfect for a getaway</CardSubtitle>
-              <CardText>Come check out this awesome cabin! </CardText>
-              <CardText>Minimum Nights: {props.minimum_nights} </CardText>
-              <CardText>Bedrooms: {props.bedrooms} </CardText>
-              <CardText>Bathrooms: {props.bathrooms} </CardText>
-              <CardText>Security Deposit: {props.security_deposit} </CardText>
-              <CardText>Price: {props.price} </CardText>
-              <CardText>Accommodates: {props.accommodates} </CardText>
-              <CardText>Property Type: {props.property_type} </CardText>
-              <CardText>Bed Type: {props.bed_types} </CardText>
+        <div className="property-card-container">
+          <Card className="property-card">
+            <div className="img-div">
+            <CardImg className="image-container" top width="100%" src= {props.image} alt="Card image" />
+            </div>
+            <CardBody className="card-body">
+              {/* <CardTitle>Luxurious Cabin</CardTitle>
+              <CardSubtitle>Perfect for a getaway</CardSubtitle> 
+              <CardText>Come check out this awesome cabin! </CardText>  */}
+              <CardText className="card-text">Optimal Price: ${props.price} </CardText>
+              <CardText className="card-text">Minimum Nights: {props.minimum_nights} </CardText>
+              <CardText className="card-text">Bedrooms: {props.bedrooms} </CardText>
+              <CardText className="card-text">Bathrooms: {props.bathrooms} </CardText>
+              <CardText className="card-text">Security Deposit: {props.security_deposit} </CardText>
+              <CardText className="card-text">Accommodates: {props.accommodates} </CardText>
+              <CardText className="card-text">Property Type: {props.property_type} </CardText>
+              <CardText className="card-text">Bed Type: {props.bed_types} </CardText>
+              <div className="edit-delete-div">
               <Button color = 'info'> Edit </Button>
               <Button color = 'danger' onClick = {handleDelete}>Delete</Button>
+              </div>
             </CardBody>
           </Card>
          </div>
