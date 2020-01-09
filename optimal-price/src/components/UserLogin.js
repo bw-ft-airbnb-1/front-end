@@ -60,6 +60,7 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
 
         <Button id="login-btn" className ='rgBtn' type="submit">Login</Button>
       </Form>
+        <Button>Sign Up</Button>
       </Jumbotron>
 
 

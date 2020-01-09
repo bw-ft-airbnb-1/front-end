@@ -4,6 +4,7 @@ import {
     Card
 } from 'reactstrap';
 import { NavBar } from '../NavBar.js';
+import axios from 'axios';
 
 import '../Dashboard.css';
 
@@ -12,6 +13,9 @@ import '../Dashboard.css';
 export const Dashboard = () => {
 
     const {user, setUser} = useContext(Context);
+
+    axios.get()
+
 
     return(
         <div>

@@ -100,7 +100,7 @@ const runPriceEstimator = (event) => {
     event.preventDefault()
     // post to get optimal price
     setPriceEst(
-        listing.price * listing.minimum_nights
+        axios.get()
     )
 }
 
