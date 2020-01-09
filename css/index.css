@@ -173,7 +173,7 @@ h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 57px;
+  margin-top: 10%;
 }
 .airbnb {
   display: none;
@@ -194,7 +194,7 @@ h5 {
   font-size: 0;
 }
 h3 {
-  margin-top: 12px;
+  margin-top: 4%;
   font-style: normal;
   font-weight: 500;
   font-size: 1.6rem;
@@ -203,7 +203,7 @@ h3 {
   color: #000000;
 }
 .top-c2 {
-  margin-top: 33px;
+  margin-top: 8%;
   font-style: normal;
   font-weight: bold;
   font-size: 1.2rem;
@@ -212,7 +212,7 @@ h3 {
 }
 h1,
 h2 {
-  margin-top: 4px;
+  margin-top: 1.5%;
   text-align: center;
   font-style: normal;
   font-weight: bold;
@@ -225,7 +225,7 @@ h2 {
 .mid-c2-opt,
 .mid-c2-work,
 .mid-c2-prices {
-  margin: 15px 0 12px 0;
+  margin: 3% 0 2% 0;
   font-style: normal;
   font-weight: bold;
   font-size: 1.2rem;
@@ -245,7 +245,7 @@ h2 {
 .btn {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 8%;
   background: #484848;
   border-radius: 5px;
   color: #FFFFFF;
