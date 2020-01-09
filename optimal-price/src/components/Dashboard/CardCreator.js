@@ -6,15 +6,18 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import {useHistory} from 'react-router-dom';
 
 
    export const Cards = props =>{
+
+     const history = useHistory();
     const {properties, setProperties} = useContext(Context)
   
-    //  const edit = e =>{
-    //    e.preventDefault();
-    //    // axios.put call here
-    //  }
+     const edit = e =>{
+       e.preventDefault();
+       history.push(`/edit/${props.myid}`)
+     }
 
     const handleDelete = e => {
       e.preventDefault();
@@ -42,7 +45,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
               <CardText>Accommodates: {props.accommodates} </CardText>
               <CardText>Property Type: {props.property_type} </CardText>
               <CardText>Bed Type: {props.bed_types} </CardText>
-              <Button color = 'info'> Edit </Button>
+              <Button color = 'info' onClick = {edit}> Edit </Button>
               <Button color = 'danger' onClick = {handleDelete}>Delete</Button>
             </CardBody>
           </Card>
