@@ -2,6 +2,13 @@ import React, {useContext} from "react";
 import axios from 'axios'
 import Context from './../contexts/loginContext';
 
+import {
+  Jumbotron,
+  Button
+} from 'reactstrap';
+
+import './UserLogin.css';
+
 const SignUp = (props) =>{
 
 
@@ -33,8 +40,10 @@ const SignUp = (props) =>{
 }
 
   return ( // *********Changed this***********
-    <div className = 'signUp'>
+    <div className = 'LoginForm'>
+      <Jumbotron className="jumbotron">
       <form className = 'registration' onSubmit = {handleSubmit}>
+ 
         <label htmlFor = 'name'>Name: </label>
             <input className = 'signUpInput'
               id = 'name'
@@ -45,6 +54,7 @@ const SignUp = (props) =>{
               onChange = {handleChanges}
               required
         />
+
 
         <label htmlFor = 'email'>Email: </label>
           <input className = 'signUpInput'
@@ -57,6 +67,7 @@ const SignUp = (props) =>{
             required
         />
 
+
         <label htmlFor = 'password'>Password: </label>
           <input className = 'signUpInput'
             id = 'password'
@@ -66,8 +77,10 @@ const SignUp = (props) =>{
             value = {credentials.password}
             onChange = {handleChanges}
         />
-        <button className = 'rgBtn'>SignUp</button>
+
+        <Button className = 'rgBtn'>SignUp</Button>
       </form>
+      </Jumbotron>
     </div>
   )
 

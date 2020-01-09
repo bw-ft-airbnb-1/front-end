@@ -30,11 +30,12 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
   return(
     <div className="LoginForm">
       <Jumbotron className="jumbotron">
-      <Form onSubmit = {handleSubmit}>
-
+      <Form className="login" onSubmit = {handleSubmit}>
+  
         <label htmlFor="email">
           Email:
             <Field
+              className="log-field"
               id="email"
               type="email"
               name="email"  
@@ -42,9 +43,12 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
             />
         {touched.email && errors.email && (<p> {errors.email} </p>)}
         </label>
+
+
         <label htmlFor="password">
           Password:
             <Field 
+              className="log-field"
               id="password"
               type="password"
               name="password"
@@ -53,7 +57,8 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
         {touched.password && errors.password && (<p> {errors.password} </p>)}
         </label>
 
-        <Button type="submit">Login</Button>
+
+        <Button id="login-btn" className ='rgBtn' type="submit">Login</Button>
       </Form>
       </Jumbotron>
 

@@ -24,13 +24,13 @@ export const AddListing = () => {
      minimum_nights: "",
      bedrooms: "",
      bathrooms: "",
-    omodates: "",
+     accomodates: "",
      bed_type: "",
      security_deposit: "",
      room_type: "",
      property_type: "",
      zip_code: "",
-     amenities: {" acclaundry":false, "spa":false, "wifi":false, "cleaning":false, "breakfast":false, "security":false, "pool":false, "patio":false, "pets":false}
+     amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair_dryer":false, "laptop_friendly":false, "workspace":false, "hangers":false, "iron":false, "hot_water":false, "shampoo":false, "tv":false, "family":false, "kid_friendly":false, "internet":false, "host_greets_you":false, "smoke_detector":false, "buzzer":false, "wireless_intercom":false, "free_street_parking":false, "refrigerator":false, "dishes_and_silverware":false, "bed_linens":false, "cooking_basics":false, "stove":false, "lock_on_bedroom_door":false, "oven":false, "elevator":false, "coffee_maker":false, "smoking_allowed":false, "first_aid_kit":false, "cable_tv":false, "dishwasher":false, "long_term_stays_allowed":false, "luggage_dropoff_allowed":false, "dryer":false, "fire_extinguisher":false, "pets_allowed":false, "extra_pillows_and_blankets":false, "patio_or_balcony":false, "microwave":false, "private_entrance":false, "paid_parking_off_premise":false, "safety_card":false, "free_parking_off_premises":false, "private_living_room":false, "bathtub":false}
  })
 
  const [priceEst, setPriceEst] = useState(0)
@@ -69,6 +69,24 @@ const updateCheckbox = (event) => {
     })
 }
 
+const renderAmenities = () => {
+
+    const amens = ["wifi", "heating", "kitchen", "essentials", "washer", "hair_dryer", "laptop_friendly", "workspace", "hangers", "iron", "hot_water", "shampoo", "tv", "family", "kid_friendly", "internet", "host_greets_you", "smoke_detector", "buzzer", "wireless_intercom", "free_street_parking", "refrigerator", "dishes_and_silverware", "bed_linens", "cooking_basics", "stove", "lock_on_bedroom_door", "oven", "elevator", "coffee_maker", "smoking_allowed", "first_aid_kit", "cable_tv", "dishwasher", "long_term_stays_allowed", "luggage_dropoff_allowed", "dryer", "fire_extinguisher", "pets_allowed", "extra_pillows_and_blankets", "patio_or_balcony", "microwave", "private_entrance", "paid_parking_off_premise", "safety_card", "free_parking_off_premises", "private_living_room", "bathtub"];
+    return amens.map((amen) => {
+        return (
+            <label>
+                {amen}
+                <input
+                    type="checkbox"
+                    name={amen}
+                    onChange={updateCheckbox}
+                    checked={listing.amenities.amen}
+                />
+            </label>
+        )
+    })
+}
+
 
 
 
@@ -98,7 +116,7 @@ const cancelForm = () => {
         room_type: "",
         property_type: "",
         zip_code: "",
-        amenities: {"laundry":false, "spa":false, "wifi":false, "cleaning":false, "breakfast":false, "security":false, "pool":false, "patio":false}
+        amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair_dryer":false, "laptop_friendly":false, "workspace":false, "hangers":false, "iron":false, "hot_water":false, "shampoo":false, "tv":false, "family":false, "kid_friendly":false, "internet":false, "host_greets_you":false, "smoke_detector":false, "buzzer":false, "wireless_intercom":false, "free_street_parking":false, "refrigerator":false, "dishes_and_silverware":false, "bed_linens":false, "cooking_basics":false, "stove":false, "lock_on_bedroom_door":false, "oven":false, "elevator":false, "coffee_maker":false, "smoking_allowed":false, "first_aid_kit":false, "cable_tv":false, "dishwasher":false, "long_term_stays_allowed":false, "luggage_dropoff_allowed":false, "dryer":false, "fire_extinguisher":false, "pets_allowed":false, "extra_pillows_and_blankets":false, "patio_or_balcony":false, "microwave":false, "private_entrance":false, "paid_parking_off_premise":false, "safety_card":false, "free_parking_off_premises":false, "private_living_room":false, "bathtub":false}
 
     })
     setPriceEst(0.00)
@@ -125,6 +143,7 @@ const cancelForm = () => {
 
 //     // zip code validation
 //     } 
+
 
 
     return(
@@ -304,88 +323,9 @@ const cancelForm = () => {
                         </label>
                     </Card>
                     <Card className="checkbox-card">
-                        <label className="check">
-                            Laundry
-                            <input
-                            type="checkbox"
-                            name="laundry"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.laundry}
-                            />
-                        </label>
-                        <label className="check">
-                            Spa
-                            <input
-                            type="checkbox"
-                            name="spa"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.spa}
-                            />
-                        </label>
-                        <label className="check">
-                            Wifi
-                            <input
-                            type="checkbox"
-                            name="wifi"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.wifi}
-                            />
-                        </label>
-                        <label className="check">
-                            Cleaning
-                            <input
-                            type="checkbox"
-                            name="cleaning"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.cleaning}
-                            />
-                        </label>
-                        <label className="check">
-                            Breakfast
-                            <input
-                            type="checkbox"
-                            name="breakfast"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.breakfast}
-                            />
-                        </label>
-                        <label className="check">
-                            Security
-                            <input
-                            type="checkbox"
-                            name="security"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.security}
-                            />
-                        </label>
-                        <label className="check">
-                            Pool
-                            <input
-                            type="checkbox"
-                            name="pool"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.pool}
-                            />
-                        </label>
-                        <label className="check">
-                            Patio
-                            <input
-                            type="checkbox"
-                            name="patio"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.patio}
-                            />
-                        </label>
-                        <label className="check">
-                            Pets
-                            <input
-                            type="checkbox"
-                            name="pets"
-                            onChange={updateCheckbox}
-                            checked={listing.amenities.pets}
-                            />
-                        </label>
+                        { renderAmenities() }
                     </Card>
+
                 </form>
                 <div className="button-div">
                 <Button onClick={addListing} color="info" className="submitButton">
