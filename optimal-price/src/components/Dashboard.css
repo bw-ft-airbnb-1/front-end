@@ -1,0 +1,103 @@
+/* DASHBOARD */
+.welcome-card {
+    width: 25%;
+    margin-right: 55%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+
+
+
+/* ADD LISTING */
+
+.addListing {
+    display: flex;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.addListing-label {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.addCard {
+    height: 30%;
+    width: 40%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    border-color: #84254C;
+    border-radius: 50px;
+}
+
+.addCard:hover {
+    box-shadow: 5px 10px #549195;
+}
+
+.label-text {
+    font-size: 1.6rem;
+}
+
+#output-card {
+    color:  #222222;
+    text-align: center;
+    margin-right: 30%;
+    margin-left: 30%;
+    border-radius: 5px;
+    border-color: #FF385C;
+    background-color: #F1F1F1;
+}
+
+#output-card:hover {
+box-shadow: none;
+}
+
+.output-label-text {
+    text-align: start;
+    margin-left: 2%;
+}
+
+.run-ds-btn {
+    background-color: green;
+}
+
+.run-ds-btn:hover {
+    background-color: darkgreen;
+}
+
+.button-div {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.checkbox-card {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 2.5%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    border-radius: 5px;
+    border-color: #84254C;
+}
+
+.check {
+    margin: 1%;
+}
+

@@ -1,0 +1,33 @@
+.nav-container {
+    background-color: #F1F1F1;
+}
+
+.mr-auto {
+    color: #222222;
+}
+
+.mr-auto:hover {
+    color: #FF385C;
+}
+
+.navItem-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 55%;
+    align-items: baseline;
+}
+
+.navLink {
+    color: #222222;
+}
+.navLink:hover {
+    color: #FF385C;
+}
+
+.signout-btn {
+  background-color: #549195;
+}
+
+.signout-btn:hover {
+    background-color: #222222;
+}
