@@ -182,12 +182,15 @@ h5 {
   width: 100%;
 }
 .top-b2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 .top-b2b,
 .hosting,
-.topFeatures {
+.topFeatures,
+.main-btm-paragraph h1,
+.price-optm .intro,
+.price-optm h2 {
   font-size: 0;
 }
 h3 {
@@ -232,18 +235,12 @@ h2 {
 .main-btm {
   margin-bottom: 2%;
 }
-.main-btm-paragraph h1 {
-  font-size: 0;
+.main-btm-paragraph .mid-p {
+  font-size: 1.2rem;
 }
 .price-optm {
   width: 100%;
   position: relative;
-}
-.price-optm .intro {
-  font-size: 0;
-}
-.price-optm h2 {
-  font-size: 0;
 }
 .btn {
   display: flex;
@@ -256,10 +253,10 @@ h2 {
   width: 100%;
   padding: 5%;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 .red-dots {
-  color: #FF385C;
+  color: white;
   text-align: center;
   font-size: 4rem;
 }
@@ -272,8 +269,9 @@ h2 {
   background: #484848;
   border-radius: 5px;
   color: #FFFFFF;
-  padding: 0.5%;
+  padding: 2%;
   text-decoration: none;
+  font-size: 1,2rem;
 }
 @media screen and (min-width: 1000px) {
   .container {
@@ -281,19 +279,25 @@ h2 {
     justify-content: row;
   }
   .airbnb {
-    margin: 2% 0 0 2%;
+    margin-left: 2%;
     display: block;
     width: 3%;
   }
   .desk-host {
-    margin: 5% auto 0 auto;
+    display: flex;
+    justify-content: row;
+    align-items: baseline;
+    margin: 2% auto 0 auto;
     width: 95%;
   }
   .desk-host .hosting {
+    margin-left: 0.5%;
     font-family: 'Airbnb Cereal App Bold';
     font-size: 1.6rem;
   }
-  .desk-host .topFeatures {
+  .topFeatures {
+    margin: 10% auto 0 auto;
+    width: 90%;
     margin-top: 2%;
     font-size: 1.2rem;
     color: #8B8B8B;
@@ -316,15 +320,13 @@ h2 {
     width: 90%;
     position: relative;
   }
-  .hosting {
-    font-size: 1rem;
-  }
+  .hosting,
   .topFeatures {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .price-optm .intro {
     font-family: 'Airbnb Cereal App Bold';
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #8B8B8B;
     margin-bottom: 1%;
   }
@@ -377,13 +379,14 @@ h2 {
     padding: 3%;
     font-style: normal;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.6rem;
     line-height: 133.61%;
   }
   .about-us {
     margin-top: 2%;
     width: 40%;
-    padding: 2%;
+    padding: 1%;
+    font-size: 1.5rem;
   }
 }
 body {
