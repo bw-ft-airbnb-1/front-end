@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import axios from 'axios'
 import Context from './../contexts/loginContext';
+import {Link} from 'react-router-dom';
 
 import {
   Jumbotron,
@@ -80,6 +81,11 @@ const SignUp = (props) =>{
 
         <Button className = 'rgBtn'>SignUp</Button>
       </form>
+        <Button id="login-btn" className ='rgBtn' > 
+            <Link to='/'>
+              Login
+            </Link>
+        </Button>
       </Jumbotron>
     </div>
   )

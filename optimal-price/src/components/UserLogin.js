@@ -1,5 +1,6 @@
 
 import React, { useEffect, useContext } from 'react';
+import {Link} from 'react-router-dom';
 
 import {
   Jumbotron,
@@ -59,9 +60,14 @@ const UserLogin = ({values, errors, touched, status, handleSubmit,handleChange})
 
 
         <Button id="login-btn" className ='rgBtn' type="submit">Login</Button>
+        
       </Form>
+        <Button id="login-btn" className ='rgBtn' > 
+            <Link to='/signup'>
+              Sign Up
+            </Link>
+        </Button>
       </Jumbotron>
-
 
     </div>
     )

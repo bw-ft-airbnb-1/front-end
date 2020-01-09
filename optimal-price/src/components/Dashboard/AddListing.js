@@ -10,31 +10,28 @@ import {
     CardTitle
   } from 'reactstrap';
   
- 
+import '../Dashboard.css';
+import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
-  import '../Dashboard.css';
-
-
- import {axiosWithAuth} from '../../utils/axiosWithAuth';
 //import Context from './../contexts/loginContext';
 
 export const AddListing = () => {
  const [listing, setListing] = useState({
-     price: "",
+     price:  "",
      minimum_nights: "",
      bedrooms: "",
      bathrooms: "",
-     accomodates: "",
+     accommodates: "",
      bed_type: "",
-     security_deposit: "",
+     security_deposit:  "",
      room_type: "",
      property_type: "",
-     zip_code: "",
-     amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair dryer":false, "laptop friendly":false, "workspace":false, "hangers":false, "iron":false, "hot water":false, "shampoo":false, "tv":false, "family":false, "kid friendly":false, "internet":false, "host greets you":false, "smoke detector":false, "buzzer":false, "wireless intercom":false, "free street parking":false, "refrigerator":false, "dishes and silverware":false, "bed linens":false, "cooking basics":false, "stove":false, "lock on bedroom door":false, "oven":false, "elevator":false, "coffee maker":false, "smoking allowed":false, "first aid kit":false, "cable tv":false, "dishwasher":false, "long term stays allowed":false, "luggage dropoff allowed":false, "dryer":false, "fire extinguisher":false, "pets allowed":false, "extra pillows and blankets":false, "patio or balcony":false, "microwave":false, "private entrance":false, "paid parking off premise":false, "safety card":false, "free parking off premises":false, "private living room":false, "bathtub":false}
+     zip_code:  "",
+     amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair dryer":false, "laptop friendly workspace":false, "hangers":false, "iron":false, "hot water":false, "shampoo":false, "tv":false, "family":false, "kid friendly":false, "internet":false, "host greets you":false, "smoke detector":false, "buzzer":false, "wireless intercom":false, "free street parking":false, "refrigerator":false, "dishes and silverware":false, "bed linens":false, "cooking basics":false, "stove":false, "lock on bedroom door":false, "oven":false, "elevator":false, "coffee maker":false, "smoking allowed":false, "first aid kit":false, "cable tv":false, "dishwasher":false, "long term stays allowed":false, "luggage dropoff allowed":false, "dryer":false, "fire extinguisher":false, "pets allowed":false, "extra pillows and blankets":false, "patio or balcony":false, "microwave":false, "private entrance":false, "paid parking off premise":false, "safety card":false, "free parking off premises":false, "private living room":false, "bathtub":false}
  })
 
- const [priceEst, setPriceEst] = useState(0)
-
+ const [priceEst, setPriceEst] = useState(1)
+console.log(listing, 'listing is here son')
 //  const [error, setError] = useState({
 //         bedroomError: "",
 //         bathroomError: "",
@@ -53,10 +50,19 @@ export const AddListing = () => {
 
 
  const handleChange = (event) => {
-     setListing({
-         ...listing,
-         [event.target.name]: event.target.value
-     })
+     if(event.target.name === 'property_type' || event.target.name === 'bed_type' || event.target.name === 'room_type' ){
+        setListing({
+            ...listing,
+            [event.target.name]: event.target.value
+        })
+     }
+     else{
+        setListing({
+            ...listing,
+            [event.target.name]: +event.target.value
+        })
+     }
+    
  }
 
 const updateCheckbox = (event) => {
@@ -71,7 +77,7 @@ const updateCheckbox = (event) => {
 
 const renderAmenities = () => {
 
-    const amens = ["wifi", "heating", "kitchen", "essentials", "washer", "hair dryer", "laptop friendly", "workspace", "hangers", "iron", "hot water", "shampoo", "tv", "family", "kid friendly", "internet", "host greets you", "smoke detector", "buzzer", "wireless intercom", "free street parking", "refrigerator", "dishes and silverware", "bed linens", "cooking basics", "stove", "lock on bedroom door", "oven", "elevator", "coffee maker", "smoking allowed", "first aid kit", "cable tv", "dishwasher", "long term stays allowed", "luggage dropoff allowed", "dryer", "fire extinguisher", "pets allowed", "extra pillows and blankets", "patio or balcony", "microwave", "private entrance", "paid parking off premise", "safety card", "free parking off premises", "private living room", "bathtub"];
+    const amens = ["wifi", "heating", "kitchen", "essentials", "washer", "hair dryer", "laptop friendly workspace", "hangers", "iron", "hot water", "shampoo", "tv", "family", "kid friendly", "internet", "host greets you", "smoke detector", "buzzer", "wireless intercom", "free street parking", "refrigerator", "dishes and silverware", "bed linens", "cooking basics", "stove", "lock on bedroom door", "oven", "elevator", "coffee maker", "smoking allowed", "first aid kit", "cable tv", "dishwasher", "long term stays allowed", "luggage dropoff allowed", "dryer", "fire extinguisher", "pets allowed", "extra pillows and blankets", "patio or balcony", "microwave", "private entrance", "paid parking off premise", "safety card", "free parking off premises", "private living room", "bathtub"];
     return amens.map((amen) => {
         return (
             <label>
@@ -92,31 +98,39 @@ const renderAmenities = () => {
 
  const addListing = (event) => {
      event.preventDefault()
-     console.log("This is your add listing form state:", listing)
+     console.log(listing)
      //axios.post(" ",listing) return state of form plus price
+     axiosWithAuth().post('/properties', {...listing, optimal_price:priceEst})
+                    .then(response =>{
+                        console.log(response)
+                    })
+                    .catch(error => console.log(error.message))
  }
 
 const runPriceEstimator = (event) => {
     event.preventDefault()
     // post to get optimal price
-    setPriceEst(
-        listing.price * listing.minimum_nights
-    )
+    axios.post('https://cors-anywhere.herokuapp.com/https://air-bnb-optimizer.herokuapp.com/price',listing)
+                 .then(response =>{
+                     console.log(response)
+                     setPriceEst(response.data)
+                 })
+                 .catch(error => console.log(error))
 }
 
 const cancelForm = () => {
     setListing({
-        price: "",
-        minimum_nights: "",
-        bedrooms: "",
-        bathrooms: "",
-        accomodates: "",
+        price:  "",
+        minimum_nights:  "",
+        bedrooms:  "",
+        bathrooms:  "",
+        accomodates:  "",
         bedtype: "",
-        security_deposit: "",
+        security_deposit:  "",
         room_type: "",
         property_type: "",
-        zip_code: "",
-        amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair dryer":false, "laptop friendly":false, "workspace":false, "hangers":false, "iron":false, "hot water":false, "shampoo":false, "tv":false, "family":false, "kid friendly":false, "internet":false, "host greets you":false, "smoke detector":false, "buzzer":false, "wireless intercom":false, "free street parking":false, "refrigerator":false, "dishes and silverware":false, "bed linens":false, "cooking basics":false, "stove":false, "lock on bedroom door":false, "oven":false, "elevator":false, "coffee maker":false, "smoking allowed":false, "first aid kit":false, "cable tv":false, "dishwasher":false, "long term stays allowed":false, "luggage dropoff allowed":false, "dryer":false, "fire extinguisher":false, "pets allowed":false, "extra pillows and blankets":false, "patio or balcony":false, "microwave":false, "private entrance":false, "paid parking off premise":false, "safety card":false, "free parking off premises":false, "private living room":false, "bathtub":false}
+        zip_code:  "",
+        amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair dryer":false, "laptop friendly workspace":false, "hangers":false, "iron":false, "hot water":false, "shampoo":false, "tv":false, "family":false, "kid friendly":false, "internet":false, "host greets you":false, "smoke detector":false, "buzzer":false, "wireless intercom":false, "free street parking":false, "refrigerator":false, "dishes and silverware":false, "bed linens":false, "cooking basics":false, "stove":false, "lock on bedroom door":false, "oven":false, "elevator":false, "coffee maker":false, "smoking allowed":false, "first aid kit":false, "cable tv":false, "dishwasher":false, "long term stays allowed":false, "luggage dropoff allowed":false, "dryer":false, "fire extinguisher":false, "pets allowed":false, "extra pillows and blankets":false, "patio or balcony":false, "microwave":false, "private entrance":false, "paid parking off premise":false, "safety card":false, "free parking off premises":false, "private living room":false, "bathtub":false}
 
     })
     setPriceEst(0.00)
@@ -218,8 +232,8 @@ const cancelForm = () => {
                         <h4 className="label-text">Accomodates: </h4>
                             <input
                             type="number"
-                            name="accomodates"
-                            value={listing.accomodates || ""}
+                            name="accommodates"
+                            value={listing.accommodates || ""}
                             min="1"
                             placeholder="Accomodates"
                             onChange={handleChange}
@@ -236,12 +250,11 @@ const cancelForm = () => {
                             required
                             >
                                 <option value="none">Bed Type</option>
-                                <option value="real_bed">Real Bed</option>
-                                <option value="pull_out">Pull-out</option>
-                                <option value="sofa">Sofa</option>
+                                <option value="real bed">Real Bed</option>
+                                <option value="pull-out sofa">Pull-out</option>
                                 <option value="futon">Futon</option>
                                 <option value="couch">Couch</option>
-                                <option value="air_bed">Airbed</option>
+                                <option value="airbed">Airbed</option>
                             </select>
                         </label>
                     </Card>
@@ -269,9 +282,9 @@ const cancelForm = () => {
                             required
                             >
                                 <option value="none">What describes the space?</option>
-                                <option value="private_room">Private Room</option>
-                                <option value="entire_home_or_apt">Entire Home/Apt.</option>
-                                <option value="shared">Shared Home/Apt.</option>
+                                <option value="private room">Private Room</option>
+                                <option value="entire home/apt">Entire Home/Apt.</option>
+                                <option value="shared room">Shared Home/Apt.</option>
                             </select>    
                         </label>   
                     </Card>
@@ -290,20 +303,20 @@ const cancelForm = () => {
                                 <option value="apartment">Apartment</option>
                                 <option value="condominium">Condominium</option>
                                 <option value="loft">Loft</option>
-                                <option value="serviced_apartment">Serviced Apartment</option> 
+                                <option value="serviced apartment">Serviced Apartment</option> 
                                 <option value="hostel">Hostel</option>
-                                <option value="guest_suite">Guest Suite</option>
-                                <option value="bed_and_breakfast">Bed and Breakfast</option>
-                                <option value="guest_house">Guest House</option>
+                                <option value="guest suite">Guest Suite</option>
+                                <option value="bed and breakfast">Bed and Breakfast</option>
+                                <option value="guest house">Guest House</option>
                                 <option value="hotel">Hotel</option>
-                                <option value="boutique_hotel">Boutique Hotel</option>
+                                <option value="boutique hotel">Boutique Hotel</option>
                                 <option value="bungalow">Bungalow</option>
                                 <option value="boat">Boat</option>
-                                <option value="tiny_house">Tiny House</option>
-                                <option value="house_boat">House Boat</option>
-                                <option value="camper_rv">Camper/RV</option>
+                                <option value="tiny house">Tiny House</option>
+                                <option value="houseboat">House Boat</option>
+                                <option value="campter rv">Camper/RV</option>
                                 <option value="villa">Villa</option>
-                                <option value="apart_hotel">Aparthotel</option>
+                                <option value="apart hotel">Aparthotel</option>
                                 <option value="other">Other</option>
                             </select>    
                         </label>  
