@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Context from '../../contexts/loginContext';
 import {
     Card
@@ -7,6 +7,7 @@ import { NavBar } from '../NavBar.js';
 import axios from 'axios';
 
 import '../Dashboard.css';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
 
@@ -14,9 +15,15 @@ export const Dashboard = () => {
 
     const {user, setUser} = useContext(Context);
 
-    axios.get()
-
-
+    useEffect(() =>{
+        axiosWithAuth().get('/user/user')
+        .then(response =>{
+            console.log(response)
+            setUser(response.data)
+        })
+        .catch(error => console.log(error))
+    },[])
+   
     return(
         <div>
         <NavBar />

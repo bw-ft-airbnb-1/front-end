@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import Context from '../../contexts/loginContext';
 
 import {
   Card, CardImg, CardText, CardBody,
@@ -8,8 +9,8 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
    export const Cards = props =>{
-     console.log(props, 'this is for props')
-
+    const {properties, setProperties} = useContext(Context)
+  
     //  const edit = e =>{
     //    e.preventDefault();
     //    // axios.put call here
@@ -20,10 +21,9 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
       axiosWithAuth()
                     .delete(`/properties/${props.myid}`)
                     .then(response => {
-                      console.log(response)
+                      setProperties(properties.filter(item => item.id !== props.myid)) 
                     })
                     .catch(err => console.log(err))
-
     }
 
       return (
@@ -34,15 +34,14 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
               <CardTitle>Luxurious Cabin</CardTitle>
               <CardSubtitle>Perfect for a getaway</CardSubtitle>
               <CardText>Come check out this awesome cabin! </CardText>
-              <CardText>Minimum Nights: {props.minimumNights} </CardText>
+              <CardText>Minimum Nights: {props.minimum_nights} </CardText>
               <CardText>Bedrooms: {props.bedrooms} </CardText>
               <CardText>Bathrooms: {props.bathrooms} </CardText>
-              <CardText>Place: {props.entirePlace} </CardText>
+              <CardText>Security Deposit: {props.security_deposit} </CardText>
+              <CardText>Price: {props.price} </CardText>
               <CardText>Accommodates: {props.accommodates} </CardText>
-              <CardText>Property Type: {props.propertyType} </CardText>
-              <CardText>Bed Type: {props.bedType} </CardText>
-              <CardText>Security Deposit: {props.securityDeposit} </CardText>
-              <CardText>Optimal Price : {props.optimalPrice } </CardText>
+              <CardText>Property Type: {props.property_type} </CardText>
+              <CardText>Bed Type: {props.bed_types} </CardText>
               <Button color = 'info'> Edit </Button>
               <Button color = 'danger' onClick = {handleDelete}>Delete</Button>
             </CardBody>
