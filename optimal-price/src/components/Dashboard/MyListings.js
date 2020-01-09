@@ -18,7 +18,7 @@ export const MyListings = (props) => {
 
     return(
         <div>
-        <NavBar />
+        <NavBar />  
             My Listings
         {state.map(()=> (
             <Cards />
