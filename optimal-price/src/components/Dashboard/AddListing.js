@@ -10,17 +10,14 @@ import {
     CardTitle
   } from 'reactstrap';
   
- 
+import '../Dashboard.css';
+import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
-  import '../Dashboard.css';
-
-
- import {axiosWithAuth} from '../../utils/axiosWithAuth';
 //import Context from './../contexts/loginContext';
 
 export const AddListing = () => {
  const [listing, setListing] = useState({
-     price: "",
+     price: 300,
      minimum_nights: "",
      bedrooms: "",
      bathrooms: "",
@@ -92,16 +89,24 @@ const renderAmenities = () => {
 
  const addListing = (event) => {
      event.preventDefault()
-     console.log("This is your add listing form state:", listing)
+     console.log(listing)
      //axios.post(" ",listing) return state of form plus price
+     axiosWithAuth().post('/properties', listing)
+                    .then(response =>{
+                        console.log(response)
+                    })
+                    .catch(error => console.log(error.message))
  }
 
 const runPriceEstimator = (event) => {
     event.preventDefault()
     // post to get optimal price
-    setPriceEst(
-        listing.price * listing.minimum_nights
-    )
+    axios.post('https://air-bnb-optimizer.herokuapp.com/price',listing)
+                 .then(response =>{
+                     console.log(response)
+                    //  setPriceEst
+                 })
+                 .catch(error => console.log(error))
 }
 
 const cancelForm = () => {

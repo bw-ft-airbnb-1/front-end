@@ -39,7 +39,7 @@ export const MyListings = () => {
                 property_type = {item.property_type}
                 bed_types = {item.bed_types}
                 room_type = {item.room_type}
-                // amenities = {item.amenities}
+                amenities = {item.amenities}
             />
         ))}
  
