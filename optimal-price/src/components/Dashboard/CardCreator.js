@@ -6,17 +6,20 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import {useHistory} from 'react-router-dom';
 
 import '../Dashboard.css';
 
 
    export const Cards = props =>{
+
+     const history = useHistory();
     const {properties, setProperties} = useContext(Context)
   
-    //  const edit = e =>{
-    //    e.preventDefault();
-    //    // axios.put call here
-    //  }
+     const edit = e =>{
+       e.preventDefault();
+       history.push(`/edit/${props.myid}`)
+     }
 
     const handleDelete = e => {
       e.preventDefault();
@@ -47,7 +50,7 @@ import '../Dashboard.css';
               <CardText className="card-text">Property Type: {props.property_type} </CardText>
               <CardText className="card-text">Bed Type: {props.bed_types} </CardText>
               <div className="edit-delete-div">
-              <Button color = 'info'> Edit </Button>
+              <Button color = 'info' onClick = {edit}> Edit </Button>
               <Button color = 'danger' onClick = {handleDelete}>Delete</Button>
               </div>
             </CardBody>
