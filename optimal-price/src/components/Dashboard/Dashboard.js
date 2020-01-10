@@ -4,6 +4,7 @@ import {
     Card
 } from 'reactstrap';
 import { NavBar } from '../NavBar.js';
+import axios from 'axios';
 
 import '../Dashboard.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
