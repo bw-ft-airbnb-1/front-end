@@ -1,11 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import Context from '../../contexts/loginContext';
-import {
-    Card
-} from 'reactstrap';
+import {Card} from 'reactstrap';
 import { NavBar } from '../NavBar.js';
-import axios from 'axios';
-
 import '../Dashboard.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 

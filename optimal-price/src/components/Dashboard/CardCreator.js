@@ -1,19 +1,14 @@
 import React, {useContext} from 'react';
 import Context from '../../contexts/loginContext';
-
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button} from 'reactstrap';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import {useHistory} from 'react-router-dom';
-
 import '../Dashboard.css';
 
 
    export const Cards = props =>{
 
-     const history = useHistory();
+    const history = useHistory();
     const {properties, setProperties} = useContext(Context)
   
      const edit = e =>{
@@ -39,9 +34,6 @@ import '../Dashboard.css';
             <CardImg className="image-container" top width="100%" src= {props.image} alt="Card image" />
             </div>
             <CardBody className="card-body">
-              {/* <CardTitle>Luxurious Cabin</CardTitle>
-              <CardSubtitle>Perfect for a getaway</CardSubtitle> 
-              <CardText>Come check out this awesome cabin! </CardText>  */}
               <CardText className="card-text">Optimal Price: ${props.price} </CardText>
               <CardText className="card-text">Minimum Nights: {props.minimum_nights} </CardText>
               <CardText className="card-text">Bedrooms: {props.bedrooms} </CardText>

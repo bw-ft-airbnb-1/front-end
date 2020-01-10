@@ -5,7 +5,6 @@ import {
     Jumbotron,
     Button,
     Card,
-    CardTitle
   } from 'reactstrap';
   
 import '../Dashboard.css';
@@ -81,7 +80,6 @@ const listId = props.match.params.id
  const handleSubmit = (event) => {
      event.preventDefault()
      console.log(listing)
-     //axios.post(" ",listing) return state of form plus price
      axiosWithAuth().put(`/properties/${listId}`, {...listing, optimal_price:priceEst})
                     .then(response =>{
                         console.log(response)
@@ -117,31 +115,7 @@ const cancelForm = () => {
 
     })
     setPriceEst(0.00)
-
-    // setError({
-    //     bedroomError: "",
-    //     bathroomError: "",
-    //     securityDepositError: "",
-    //     zip_code_error: ""
-    // })
 }
-
-// const validate = () => {
-//     let bedroomError = ""
-//     let bathroomError = ""
-//     let securityDepositError = ""
-//     let zip_code_error = ""
-    
-//     // bedroom validation
-    
-//     // bathroom validation
-
-//     // security deposit validation
-
-//     // zip code validation
-//     } 
-
-
 
     return(
         <div>
