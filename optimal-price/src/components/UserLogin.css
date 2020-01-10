@@ -10,7 +10,42 @@
 
 .jumbotron {
     color: #FF385C;
+    border-color: #549195;
+    border-radius: 25px;
+
 }
+
+
+.rgBtn {
+    background-color: #549195;
+}
+
+.log-field {
+    width: 70%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+#login-btn {
+    width: 25%;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.registration {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 
 
 

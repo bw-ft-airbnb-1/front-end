@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { NavBar } from '../NavBar.js';
 import axios from "axios";
-
-
 import {
     Jumbotron,
     Button,
@@ -16,7 +13,8 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 
 //import Context from './../contexts/loginContext';
 
-export const AddListing = () => {
+export const Edit = (props) => {
+    console.log(props)
  const [listing, setListing] = useState({
      price:  "",
      minimum_nights: "",
@@ -31,25 +29,7 @@ export const AddListing = () => {
      amenities: {"wifi":false, "heating":false, "kitchen":false, "essentials":false, "washer":false, "hair dryer":false, "laptop friendly workspace":false, "hangers":false, "iron":false, "hot water":false, "shampoo":false, "tv":false, "family":false, "kid friendly":false, "internet":false, "host greets you":false, "smoke detector":false, "buzzer":false, "wireless intercom":false, "free street parking":false, "refrigerator":false, "dishes and silverware":false, "bed linens":false, "cooking basics":false, "stove":false, "lock on bedroom door":false, "oven":false, "elevator":false, "coffee maker":false, "smoking allowed":false, "first aid kit":false, "cable tv":false, "dishwasher":false, "long term stays allowed":false, "luggage dropoff allowed":false, "dryer":false, "fire extinguisher":false, "pets allowed":false, "extra pillows and blankets":false, "patio or balcony":false, "microwave":false, "private entrance":false, "paid parking off premise":false, "safety card":false, "free parking off premises":false, "private living room":false, "bathtub":false}
  })
 
- const [priceEst, setPriceEst] = useState(1)
-console.log(listing, 'listing is here son')
-//  const [error, setError] = useState({
-//         bedroomError: "",
-//         bathroomError: "",
-//         securityDepositError: "",
-//         zip_code_error: ""
-//  })
-
-//  useEffect(()=>{
-//     axiosWithAuth().get('/properties/getOptions')
-//     .then(res =>{
-//         console.log(res)
-//     }).catch(err => {
-//         console.log(err)
-//     })
-//  },[])
-
- 
+ const [priceEst, setPriceEst] = useState(1);
 
  const handleChange = (event) => {
      if(event.target.name === 'property_type' || event.target.name === 'bed_type' || event.target.name === 'room_type' ){
@@ -95,18 +75,17 @@ const renderAmenities = () => {
     })
 }
 
+const listId = props.match.params.id
 
 
-const history = useHistory()
-
- const addListing = (event) => {
+ const handleSubmit = (event) => {
      event.preventDefault()
      console.log(listing)
      //axios.post(" ",listing) return state of form plus price
-     axiosWithAuth().post('/properties', {...listing, optimal_price:priceEst})
+     axiosWithAuth().put(`/properties/${listId}`, {...listing, optimal_price:priceEst})
                     .then(response =>{
                         console.log(response)
-                        history.push('/listings')
+                        props.history.push('/listings')
                     })
                     .catch(error => console.log(error.message))
  }
@@ -114,14 +93,12 @@ const history = useHistory()
 const runPriceEstimator = (event) => {
     event.preventDefault()
     // post to get optimal price
-
     axios.post('https://cors-anywhere.herokuapp.com/https://air-bnb-optimizer.herokuapp.com/price',listing)
                  .then(response =>{
                      console.log(response)
                      setPriceEst(response.data)
                  })
                  .catch(error => console.log(error))
-
 }
 
 const cancelForm = () => {
@@ -173,7 +150,7 @@ const cancelForm = () => {
     <h1 className="output-label-text">Suggested Price: $ {priceEst}</h1>
         </Card>
             <Jumbotron className="addListing-jumbo">
-                <form className="addListing" onSubmit={AddListing}>
+                <form className="addListing" onSubmit={handleSubmit}>
 
                     <Card className="addCard">
                         <label className="addListing-label">
@@ -347,8 +324,8 @@ const cancelForm = () => {
 
                 </form>
                 <div className="button-div">
-                <Button onClick={addListing} color="info" className="submitButton">
-                    Add Listing
+                <Button onClick={handleSubmit} color="info" className="submitButton">
+                    Submit
                 </Button>
                 <Button onClick={runPriceEstimator} className="run-ds-btn">
                     Get Price

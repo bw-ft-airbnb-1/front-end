@@ -8,6 +8,7 @@ import { Switch, Route} from 'react-router-dom';
 import Context from "./contexts/loginContext";
 import SignUp from './components/SignUp';
 import UserLogin from './components/UserLogin';
+import {Edit} from './components/Dashboard/Edit';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/newlisting" component={AddListing}/>
             <PrivateRoute path="/listings" component={MyListings} />
+            <PrivateRoute path= "/edit/:id" component={Edit} />
         </Context.Provider>
       </Switch>
     </div>

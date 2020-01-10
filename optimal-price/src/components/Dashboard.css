@@ -63,8 +63,8 @@ box-shadow: none;
 }
 
 .output-label-text {
-    text-align: start;
-    margin-left: 2%;
+    text-align: center;
+
 }
 
 .run-ds-btn {
@@ -100,4 +100,59 @@ box-shadow: none;
 .check {
     margin: 1%;
 }
+
+/* CARD CONTAINER */
+
+/* .property-card-container {
+    width: 100%;
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+} */
+
+.property-card {
+ width: 80%;
+ margin-right: 10%;
+ margin-left: 10%;
+ margin-bottom: 2.5%;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+
+}
+
+.card-body {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    border-color: #549195;
+}
+
+.img-div {
+    width: 70%
+}
+
+.image-container {
+width: 100%;
+border-radius: 15px;
+}
+
+.edit-delete-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.card-text {
+    color: #FF385C;
+    size: 1.4rem;
+    text-align: center;
+}
+
+
 
