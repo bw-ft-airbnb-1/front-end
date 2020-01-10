@@ -32,6 +32,7 @@ import '../Dashboard.css';
     }
 
       return (
+
         <div className="property-card-container">
           <Card className="property-card">
             <div className="img-div">
